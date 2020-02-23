@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MonkeyFestAustralia2020.CollectionExampleView"
+             Title="CollectionView">
+    <Grid BackgroundColor="CornflowerBlue">
+        <RefreshView RefreshColor="Beige"
+                     IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding Books}"
+                            Margin="20"
+                            BackgroundColor="Transparent"
+                            VerticalScrollBarVisibility="Never"
+                            HorizontalScrollBarVisibility="Never"
+                            ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Review"
+                                               BackgroundColor="DarkSlateBlue"
+                                               Command="{Binding ReviewCommand}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Order"
+                                               BackgroundColor="BurlyWood"
+                                               Command="{Binding OrderCommand}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid>
+                                <Frame BackgroundColor="Aqua"
+                                       CornerRadius="10"
+                                       HasShadow="False"
+                                       Margin="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="0"
+                                               Grid.RowSpan="2"
+                                               Text="{Binding Id}" />
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding Title}" />
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               FontSize="Micro"
+                                               Text="{Binding Author,StringFormat='by {0}'}"
+                                               HorizontalTextAlignment="End"/>
+
+                                        <Label Grid.Row="2"
+                                               Grid.Column="1"
+                                               Text="{Binding Description}"
+                                               FontSize="Micro" />
+
+                                        <!--
+                                        <BoxView Grid.Row="2"
+                                                 Grid.Column="0"
+                                                 Grid.ColumnSpan="2"
+                                                 BackgroundColor="Black"
+                                                 HeightRequest="1"
+                                                 Margin="5"/>
+                                        -->
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Frame BackgroundColor="PaleVioletRed"
+                               CornerRadius="10"
+                               HasShadow="False"
+                               Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Someone's pinched all the books!" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

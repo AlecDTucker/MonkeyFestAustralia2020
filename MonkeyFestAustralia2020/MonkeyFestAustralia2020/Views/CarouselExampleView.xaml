@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MonkeyFestAustralia2020.CarouselExampleView"
+             Title="CarouselView"
+             BackgroundColor="CornflowerBlue">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CarouselView x:Name="TheCarousel"
+                      Grid.Row="0" 
+                      HorizontalScrollBarVisibility="Never"
+                      ItemsSource="{Binding Films}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black"
+                           CornerRadius="20"
+                           HasShadow="False">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   FontSize="Large"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Title}" />
+                            <Image Grid.Row="1"
+                                   Source="{Binding ImageUrl}" />
+                            <Label Grid.Row="2"
+                                   FontSize="Small"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Description}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+            <CarouselView.EmptyView>
+                <Grid>
+                    <Label Text="Nothing to see here"
+                           FontAttributes="Bold"
+                           FontSize="Header"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Grid>
+            </CarouselView.EmptyView>
+        </CarouselView>
+        <IndicatorView Grid.Row="1"
+                       Margin="0,0,0,20"
+                       IndicatorColor="LightGray"
+                       SelectedIndicatorColor="Black"
+                       HorizontalOptions="Center"
+                       IndicatorSize="10"
+                       IndicatorView.ItemsSourceBy="TheCarousel"/>
+
+    </Grid>
+</ContentPage>
